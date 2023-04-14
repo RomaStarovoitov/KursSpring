@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<h3>Смена роли</h3>
+<p th:text="'Пользователь: ' + ${person.getLogin()}"></p>
+<p th:text="'Роль: ' + ${person.getRole()}"></p>
+<form th:method="POST" th:action="@{/admin/person/setAdmin/{id}(id=${person.getId()})}" th:object="${person}">
+    <input type="submit" value="Поменять на ADMIN">
+</form>
+<form th:method="POST" th:action="@{/admin/person/setUser/{id}(id=${person.getId()})}" th:object="${person}">
+    <input type="submit" value="Поменять на USER">
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+</head>
+<body>
+<h3>Заказы</h3>
+<form th:method="POST" th:action="@{/admin/order/search}">
+    <fieldset>
+        <legend>Поиск по 4 последним буквам/цифрам заказа:</legend>
+        <label for="search">Поиск</label>
+        <input type="text" id="search" name="search" th:value="*{value_search}">
+        <input type="submit" value="Найти">
+    </fieldset>
+</form>
+<hr>
+<div th:each="order : ${orders}">
+    <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" th:text="'Заказ №' + ${order.getNumber()}"></a><br>
+    <img th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}" width="300px">
+    <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}">
+    <p th:text="'Количество: ' + ${order.getCount()}">
+    <p th:text="'Цена: ' + ${order.getPrice()}">
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p th:text="'Cтатус: ' + ${order.getStatus()}">
+</div>
+</body>
+</html>

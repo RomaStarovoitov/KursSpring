@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование товара</title>
+</head>
+<body>
+<h3>Редактирование товара</h3>
+<form th:method="POST" th:action="@{/admin/order/edit/{id}(id=${order.getId()})}" th:object="${order}" enctype="multipart/form-data">
+
+    <h3 th:text="'Заказ №' + ${order.getNumber()}"></h3>
+    <img th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}" width="300px">
+    <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}">
+    <p th:text="'Количество: ' + ${order.getCount()}">
+    <p th:text="'Цена: ' + ${order.getPrice()}">
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p th:text="'Cтатус: ' + ${order.getStatus()}"></p>
+        <label for="status">Выберите категорию товара: </label>
+        <select name="status" th:field="*{status}" id="status">
+        <div th:each="element : ${status}">
+            <option th:text="${element.name()}" th:value="${element}">
+        </div>
+        </select>
+    <input type="submit" value="Изменить статус">
+</form>
+</body>
+</html>
