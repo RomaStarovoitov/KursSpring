@@ -2,3 +2,15 @@ a {
     text-decoration: none;
     color: brown;
 }
+.cont {
+            margin: 0 auto;
+            width: 230px;
+        }
+        input {
+            width: 230px;
+        }
+        .button_1 {
+              margin: auto;
+              width: 50%;
+              padding: 10px;
+        }
